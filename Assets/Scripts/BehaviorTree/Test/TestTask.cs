@@ -8,10 +8,10 @@ public class TestTask : Task
     [SerializeField]
     private string taskName;
 
-    public override bool Execute()
+    public override void Execute()
     {
         print(string.Format("Task {1} will {0}", succeedTask, string.IsNullOrEmpty(taskName) ? "Invalid" : taskName));
 
-        return succeedTask;
+       // return succeedTask;
     }
 }

@@ -1,7 +1,37 @@
-﻿public class Attack : Task
+﻿using UnityEngine;
+public class Attack : State
 {
-    public override bool Execute()
+
+    float tiempoShoot, tiempo;
+    AICharacter me;
+    private void Start()
     {
-        throw new System.NotImplementedException();
+         me = GetComponent<AICharacter>();
+        tiempo = 0;
+        tiempoShoot = 0.8f;
     }
+
+    private void Update()
+    {
+        tiempo += Time.deltaTime;
+    }
+
+
+    public override void Execute()
+    {
+      
+        if (tiempo >= tiempoShoot)
+        {
+            me.SpawnBullet();
+            tiempo = 0;
+        }
+        
+        
+        
+
+        
+    }
+   
+    
+    
 }

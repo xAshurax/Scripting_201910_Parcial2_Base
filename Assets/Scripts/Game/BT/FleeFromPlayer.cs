@@ -1,7 +1,26 @@
-﻿public class FleeFromPlayer : Task
+﻿using UnityEngine;
+using UnityEngine.AI;
+public class FleeFromPlayer : State
 {
-    public override bool Execute()
+    [SerializeField]
+    NavMeshAgent agent;
+    private Transform startTransform;
+   
+
+    
+
+
+    public override void Execute()
     {
-        throw new System.NotImplementedException();
+        var dir = Jugador.transform.position - transform.position;
+
+        agent.SetDestination(transform.position - dir * 10);
+
     }
+
+    
+
+
+    
+
 }

@@ -5,15 +5,20 @@ public class Root : Node
     [SerializeField]
     private Composite child;
 
-    public override bool Execute()
+    public override void Execute()
     {
-        bool result = true;
+        
 
         if (child != null)
         {
-            result = child.Execute();
+           child.Execute();
         }
 
-        return result;
+      
+    }
+
+    private void Update()
+    {
+        Execute();
     }
 }

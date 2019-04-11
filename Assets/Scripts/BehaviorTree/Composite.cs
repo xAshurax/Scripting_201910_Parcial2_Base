@@ -15,24 +15,19 @@ public abstract class Composite : RootChild
         }
     }
 
-    protected abstract bool ValueToBreak { get; }
+  
 
-    public override bool Execute()
+    public override void Execute()
     {
-        bool result = ValueToBreak;
+      
 
         foreach (Node node in children)
         {
-            result = node.Execute();
+          node.Execute();
 
-            if (result == ValueToBreak)
-            {
-                break;
-            }
+            
         }
 
-        print(string.Format("Result for {0} : {1}", GetType().ToString(), result));
-
-        return result;
+        
     }
 }

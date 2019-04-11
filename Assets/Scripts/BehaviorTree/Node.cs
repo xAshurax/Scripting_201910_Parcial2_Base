@@ -19,5 +19,5 @@ public abstract class Node : MonoBehaviour
         }
     }
 
-    public abstract bool Execute();
+    public abstract void Execute();
 }

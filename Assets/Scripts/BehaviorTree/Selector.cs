@@ -1,18 +1,9 @@
 ﻿public class Selector : Composite
 {
-    protected override bool ValueToBreak { get { return true; } }
+   
 
-    protected virtual bool CheckCondition() { return true; }
-
-    public override bool Execute()
+    public override void Execute() //Estaba en bool
     {
-        bool result = false;
-
-        if (CheckCondition())
-        {
-            return base.Execute();
-        }
-
-        return result;
+       
     }
 }

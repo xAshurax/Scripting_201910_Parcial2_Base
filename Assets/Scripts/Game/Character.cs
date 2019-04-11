@@ -8,7 +8,10 @@ public abstract class Character : MonoBehaviour
     private float maxHP;
 
     [SerializeField]
-    private Bullet bullet;
+    private int count;
+
+    [SerializeField]
+    private Bullet [] bullet;
 
     [SerializeField]
     private float shootForce = 20F;
@@ -21,7 +24,7 @@ public abstract class Character : MonoBehaviour
     public float HP
     {
         get { return hp; }
-        protected set { hp = value; }
+         set { hp = value; }
     }
 
     public float ShootForce { get { return shootForce; } }
@@ -38,7 +41,15 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void OnDeath()
     {
-        Destroy(gameObject);
+        if(this is AICharacter)
+        {
+            HP = maxHP;
+            EnemyInstanciator.instance.Defeated(gameObject);
+        }
+        if(this is Player)
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Start is called before the first frame update
@@ -47,11 +58,18 @@ public abstract class Character : MonoBehaviour
         HP = maxHP;
     }
 
-    protected void SpawnBullet()
+    public void SpawnBullet()
     {
-        if (bullet != null && bulletSpawnPosition != null)
+        bullet[count].CancelInvoke();
+        bullet[count].gameObject.SetActive(true);
+        bullet[count].Invoke("DestroyObject", 10F);
+        bullet[count].transform.position = bulletSpawnPosition.position;
+        bullet[count].transform.rotation = transform.rotation;
+        bullet[count].Shoot(this);
+        count++;
+        if(count == bullet.Length)
         {
-            Instantiate<Bullet>(bullet, bulletSpawnPosition.position, transform.rotation).Shoot(this);
+            count = 0;
         }
     }
 }

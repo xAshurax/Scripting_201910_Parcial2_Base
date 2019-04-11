@@ -1,9 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class State : MonoBehaviour
 {
+  
+
     [SerializeField]
     private State nextState;
+
+    [SerializeField]
+   private GameObject jugador;
+
+    public GameObject Jugador { get => jugador; set => jugador = value; }
 
     public abstract void Execute();
 
@@ -25,4 +33,5 @@ public abstract class State : MonoBehaviour
             Execute();
         }
     }
+
 }

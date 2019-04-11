@@ -1,7 +1,16 @@
-﻿public class Idle : State
+﻿using UnityEngine;
+using UnityEngine.AI;
+public class Idle : State
 {
+    [SerializeField]
+    NavMeshAgent agent;
+    
     public override void Execute()
     {
-        throw new System.NotImplementedException();
+
+
+        agent.SetDestination(transform.position);
+        Debug.Log("No hacer cosa");
+        
     }
 }

@@ -1,3 +1,4 @@
-﻿public abstract class Task : RootChild
+﻿
+public abstract class Task : RootChild
 {
 }

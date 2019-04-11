@@ -1,7 +1,34 @@
-﻿public class DoKamikazeAttack : Task
+﻿using UnityEngine;
+using UnityEngine.AI;
+public class DoKamikazeAttack : State
 {
-    public override bool Execute()
+    [SerializeField]
+    NavMeshAgent agent;
+
+    [SerializeField]
+    Player playerin;
+
+    [SerializeField]
+    AICharacter me;
+
+   
+
+    public override void Execute()
     {
-        throw new System.NotImplementedException();
+        agent.SetDestination(Jugador.transform.position);
+        
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == Jugador)
+        {
+
+            me.ModifyHP(-1000);
+
+            playerin.ModifyHP(-20);
+            
+
+        }
     }
 }

@@ -25,12 +25,13 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
-        Invoke("DestroyObject", 10F);
+        
     }
 
     private void DestroyObject()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+      
     }
 
     private void OnDestroy()
@@ -46,13 +47,14 @@ public class Bullet : MonoBehaviour
 
             if (character != null && instigator != character)
             {
+                Debug.Log("Entra a modificar hp");
                 character.ModifyHP(damage * -1);
             }
         }
 
         if (collision.gameObject.Equals(instigator.gameObject))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

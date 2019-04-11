@@ -1,6 +1,6 @@
 ﻿public class MoveToDistance : Task
 {
-    public override bool Execute()
+    public override void Execute()
     {
         throw new System.NotImplementedException();
     }
